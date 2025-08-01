@@ -101,57 +101,442 @@
   padding: 20px;
   padding-top: 145px;
   padding-bottom: 100px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #dee2e6 50%, #ced4da 75%, #adb5bd 100%);
+  position: relative;
+  overflow: hidden;
+  animation: backgroundShift 12s ease-in-out infinite;
+}
+
+/* Animación del fondo principal */
+@keyframes backgroundShift {
+  0%, 100% {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #dee2e6 50%, #ced4da 75%, #adb5bd 100%);
+  }
+  50% {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 25%, #ced4da 50%, #adb5bd 75%, #868e96 100%);
+  }
+}
+
+/* Elementos decorativos animados de fondo */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 106, 159, 0.1) 0%, transparent 50%);
+  animation: rotateBackground 20s linear infinite;
+  z-index: 0;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 106, 159, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatUpDown 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Animaciones de fondo */
+@keyframes rotateBackground {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Partículas flotantes */
+.hero-section .particle {
+  position: absolute;
+  background: rgba(0, 106, 159, 0.1);
+  border-radius: 50%;
+  animation: floatParticles 15s linear infinite;
+  z-index: 0;
+}
+
+.hero-section .particle:nth-child(1) {
+  width: 8px;
+  height: 8px;
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.hero-section .particle:nth-child(2) {
+  width: 12px;
+  height: 12px;
+  top: 60%;
+  left: 80%;
+  animation-delay: 5s;
+}
+
+.hero-section .particle:nth-child(3) {
+  width: 6px;
+  height: 6px;
+  top: 80%;
+  left: 10%;
+  animation-delay: 10s;
+}
+
+@keyframes floatParticles {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Ondas animadas de fondo */
+.hero-section .wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(0, 106, 159, 0.03), transparent);
+  animation: waveMove 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero-section .wave:nth-child(4) {
+  animation-delay: 0s;
+  animation-duration: 8s;
+}
+
+.hero-section .wave:nth-child(5) {
+  animation-delay: 2s;
+  animation-duration: 10s;
+  background: linear-gradient(-45deg, transparent, rgba(0, 106, 159, 0.02), transparent);
+}
+
+.hero-section .wave:nth-child(6) {
+  animation-delay: 4s;
+  animation-duration: 12s;
+  background: linear-gradient(90deg, transparent, rgba(0, 106, 159, 0.04), transparent);
+}
+
+@keyframes waveMove {
+  0%, 100% {
+    transform: translateX(-100%) skewX(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(100%) skewX(5deg);
+    opacity: 1;
+  }
+}
+
+/* Círculos pulsantes adicionales */
+.hero-section .pulse-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 106, 159, 0.1) 0%, transparent 70%);
+  animation: pulseEffect 4s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero-section .pulse-circle:nth-child(7) {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  left: 70%;
+  animation-delay: 0s;
+}
+
+.hero-section .pulse-circle:nth-child(8) {
+  width: 100px;
+  height: 100px;
+  top: 70%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+.hero-section .pulse-circle:nth-child(9) {
+  width: 200px;
+  height: 200px;
+  top: 40%;
+  left: 85%;
+  animation-delay: 1s;
+}
+
+@keyframes pulseEffect {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.1;
+  }
+}
+
+/* Flecha de scroll down animada */
+.scroll-down-arrow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  animation: bounceUpDown 2s ease-in-out infinite;
+}
+
+.arrow-container {
+  position: relative;
+  width: 30px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+.arrow-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 25px;
+  background: linear-gradient(to bottom, #006a9f, #004d73);
+  transform: translateX(-50%);
+  animation: lineGrow 2s ease-in-out infinite;
+}
+
+.arrow-head {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid #006a9f;
+  animation: arrowPulse 2s ease-in-out infinite;
+}
+
+.scroll-text {
+  font-size: 12px;
+  color: #006a9f;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  animation: textFade 2s ease-in-out infinite;
+}
+
+/* Animaciones para la flecha */
+@keyframes bounceUpDown {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes lineGrow {
+  0%, 100% {
+    height: 25px;
+    opacity: 0.7;
+  }
+  50% {
+    height: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes arrowPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+@keyframes textFade {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Hover effect para la flecha */
+.scroll-down-arrow:hover {
+  animation-play-state: paused;
+}
+
+.scroll-down-arrow:hover .arrow-line {
+  background: linear-gradient(to bottom, #0080c7, #006a9f);
+  height: 30px;
+}
+
+.scroll-down-arrow:hover .arrow-head {
+  border-top-color: #0080c7;
+  transform: translateX(-50%) scale(1.2);
+}
+
+.scroll-down-arrow:hover .scroll-text {
+  color: #0080c7;
+  opacity: 1;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+  .scroll-down-arrow {
+    bottom: 20px;
+  }
+  
+  .scroll-text {
+    font-size: 10px;
+  }
+  
+  .arrow-container {
+    width: 25px;
+    height: 35px;
+  }
+  
+  .arrow-line {
+    height: 20px;
+  }
+  
+  .arrow-head {
+    border-left-width: 6px;
+    border-right-width: 6px;
+    border-top-width: 10px;
+  }
 }
 .content-container {
   display: flex;
   align-items: center;
-  max-width: 900px;
+  max-width: 1200px;
   width: 100%;
+  gap: 40px;
   position: relative;
 }
 .text-content {
-  width: 50%;
+  flex: 1;
   background-color: rgb(255, 255, 255);
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  position: relative;
-  margin-left: 50px;
 }
 .text-content h1 {
-  font-size: 2.5em;
-  color: #333;
-  margin: 0 0 10px;
+  font-size: 2.8em;
+  background: linear-gradient(135deg, #006a9f, #004d73, #002a3d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 20px;
   line-height: 1.2;
+  font-weight: 800;
+  animation: slideInFromLeft 1.2s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-50px);
 }
+
 .text-content p {
-  font-size: 1.2em;
-  color: #666;
+  font-size: 1.3em;
+  color: #555;
   margin: 0;
+  line-height: 1.6;
+  font-weight: 400;
+  animation: slideInFromLeft 1.2s ease-out 0.3s forwards;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* Animación para el texto del hero */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Efecto hover en el contenedor de texto */
+.text-content:hover h1 {
+  background: linear-gradient(135deg, #0080c7, #006a9f, #004d73);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+.text-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 106, 159, 0.15);
+  transition: all 0.3s ease;
 }
 .image-container {
-  width: 50%;
-  position: absolute;
-  right: 0;
-  top: -50%;
-  transform: translateY(-50%);
-  transform: translateX(-30%);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .image-container img {
-  width: 150%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 500px;
   height: auto;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.content-container::before {
-  content: '';
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  right: 0;
-  z-index: 0;
+
+/* Media Query para vista PC - asegurar separación */
+@media (min-width: 769px) {
+  .content-container {
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  .text-content {
+    flex: 0 0 45%;
+    max-width: 45%;
+    margin-right: 20px;
+  }
+  .image-container {
+    flex: 0 0 45%;
+    max-width: 45%;
+    margin-left: 20px;
+  }
+  .image-container img {
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+  }
 }
 
 /* Media Query para vista móvil */
@@ -159,24 +544,24 @@
   .content-container {
     flex-direction: column;
     position: static;
+    gap: 20px;
   }
   .text-content {
     width: 100%;
     margin-left: 0;
     position: static;
     text-align: center;
+    flex: none;
   }
   .image-container {
     width: 100%;
     position: static;
     transform: none;
     margin-top: 20px;
+    flex: none;
   }
   .image-container img {
     max-width: 100%;
-  }
-  .content-container::before {
-    display: none;
   }
   .hero-section {
     height: auto;
@@ -188,6 +573,468 @@
   }
 }
 /* FIN PAGINA DE INICIO */
+
+
+/* SECCIÓN CAMIONES EN VENTA */
+.camiones-section {
+  padding: 4rem 2rem;
+  background-color: #f8f9fa;
+  padding-top: 140px;
+  min-height: 100vh;
+}
+
+.camion-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.camion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 106, 159, 0.15);
+}
+
+.camion-image {
+  position: relative;
+  overflow: hidden;
+  height: 250px;
+}
+
+.camion-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.camion-card:hover .camion-image img {
+  transform: scale(1.05);
+}
+
+.estado-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.estado-disponible {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  animation: pulseGreen 2s ease-in-out infinite;
+}
+
+.estado-vendido {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+}
+
+.estado-reservado {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #212529;
+}
+
+@keyframes pulseGreen {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+  }
+}
+
+.camion-content {
+  padding: 1.5rem;
+}
+
+.camion-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.camion-specs {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.camion-specs li {
+  padding: 0.3rem 0;
+  color: #666;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #eee;
+}
+
+.camion-specs li:last-child {
+  border-bottom: none;
+}
+
+.camion-specs li strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.precio-container {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.precio-text {
+  font-size: 1.1rem;
+  color: #006a9f;
+  font-weight: 700;
+  margin: 0;
+}
+
+.btn-cotizar {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #006a9f, #004d73);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-cotizar:hover {
+  background: linear-gradient(135deg, #0080c7, #006a9f);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 106, 159, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-cotizar:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-cotizar:disabled:hover {
+  background: #6c757d;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Filtros de estado */
+.filtros-camiones {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.filtro-btn {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background: white;
+  border: 2px solid #006a9f;
+  color: #006a9f;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.filtro-btn:hover,
+.filtro-btn.active {
+  background: #006a9f;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .camiones-section {
+    padding: 2rem 1rem;
+    padding-top: 120px;
+  }
+  
+  .camion-image {
+    height: 200px;
+  }
+  
+  .camion-title {
+    font-size: 1.2rem;
+  }
+  
+  .filtro-btn {
+    padding: 8px 16px;
+    margin: 5px 2px;
+    font-size: 0.9rem;
+  }
+}
+
+/* FIN SECCIÓN CAMIONES EN VENTA */
+
+
+/* SECCIÓN REPUESTOS DISPONIBLES */
+.repuestos-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+  padding-top: 140px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.repuestos-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../img/serv.jpg') center center/cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.repuestos-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.repuesto-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.repuesto-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 106, 159, 0.2);
+  background: rgba(255, 255, 255, 1);
+}
+
+.repuesto-image {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.repuesto-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.repuesto-card:hover .repuesto-image img {
+  transform: scale(1.1);
+}
+
+.categoria-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 2;
+  background: linear-gradient(135deg, #006a9f, #004d73);
+  color: white;
+}
+
+.disponibilidad-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.disponible {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  animation: pulseGreen 2s ease-in-out infinite;
+}
+
+.agotado {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+}
+
+.bajo-stock {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #212529;
+}
+
+.repuesto-content {
+  padding: 1.5rem;
+}
+
+.repuesto-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.repuesto-codigo {
+  font-size: 0.85rem;
+  color: #006a9f;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+}
+
+.repuesto-specs {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.repuesto-specs li {
+  padding: 0.25rem 0;
+  color: #666;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #eee;
+}
+
+.repuesto-specs li:last-child {
+  border-bottom: none;
+}
+
+.repuesto-specs li strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.precio-repuesto {
+  margin: 1rem 0;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.precio-repuesto .precio-text {
+  font-size: 1.1rem;
+  color: #006a9f;
+  font-weight: 700;
+  margin: 0;
+}
+
+.btn-cotizar-repuesto {
+  width: 100%;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #006a9f, #004d73);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-cotizar-repuesto:hover {
+  background: linear-gradient(135deg, #0080c7, #006a9f);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 106, 159, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-cotizar-repuesto:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Filtros de categoría */
+.filtros-repuestos {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.filtro-categoria {
+  padding: 8px 16px;
+  margin: 0 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+}
+
+.filtro-categoria:hover,
+.filtro-categoria.active {
+  background: rgba(255, 255, 255, 0.9);
+  color: #006a9f;
+  border-color: #006a9f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .repuestos-section {
+    padding: 2rem 1rem;
+    padding-top: 120px;
+  }
+  
+  .repuesto-image {
+    height: 180px;
+  }
+  
+  .repuesto-title {
+    font-size: 1.1rem;
+  }
+  
+  .filtro-categoria {
+    padding: 6px 12px;
+    margin: 2px;
+    font-size: 0.8rem;
+  }
+}
+
+/* FIN SECCIÓN REPUESTOS DISPONIBLES */
 
 
 

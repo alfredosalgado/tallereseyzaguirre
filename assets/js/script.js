@@ -307,6 +307,477 @@ function enviarWhatsApp() {
 
 
 
+// Función para scroll suave a la siguiente sección
+function scrollToNextSection() {
+  const servSection = document.getElementById('serv');
+  if (servSection) {
+    servSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}
+
+// SISTEMA DINÁMICO DE CAMIONES EN VENTA
+const camionesData = [
+  {
+    id: 1,
+    titulo: "Mercedes Benz Unimog U1300L",
+    imagen: "./assets/img/galeria/1.jpg", // Usando imagen de la galería existente
+    estado: "disponible", // disponible, vendido, reservado
+    año: "1985",
+    motor: "OM352A 5.7L Diesel",
+    transmision: "Manual 8 velocidades",
+    kilometraje: "45,000 km",
+    precio: "Consultar precio",
+    descripcion: "Vehículo militar en excelente estado, ideal para trabajos pesados y terrenos difíciles."
+  },
+  {
+    id: 2,
+    titulo: "Mercedes Benz Unimog U1700L",
+    imagen: "./assets/img/galeria/5.jpg",
+    estado: "disponible",
+    año: "1988",
+    motor: "OM366A 6.0L Diesel",
+    transmision: "Manual 8 velocidades",
+    kilometraje: "38,500 km",
+    precio: "Consultar precio",
+    descripcion: "Unimog con capacidad de carga superior, perfecto para transporte militar y civil."
+  },
+  {
+    id: 3,
+    titulo: "Mercedes Benz Unimog U1250",
+    imagen: "./assets/img/galeria/10.jpg",
+    estado: "vendido",
+    año: "1982",
+    motor: "OM352 5.7L Diesel",
+    transmision: "Manual 6 velocidades",
+    kilometraje: "52,000 km",
+    precio: "VENDIDO",
+    descripcion: "Vehículo completamente restaurado, vendido a coleccionista privado."
+  },
+  {
+    id: 4,
+    titulo: "Mercedes Benz Unimog U1300",
+    imagen: "./assets/img/galeria/15.jpg",
+    estado: "reservado",
+    año: "1986",
+    motor: "OM352A 5.7L Diesel",
+    transmision: "Manual 8 velocidades",
+    kilometraje: "41,200 km",
+    precio: "RESERVADO",
+    descripcion: "Vehículo en proceso de restauración, reservado para cliente específico."
+  },
+  {
+    id: 5,
+    titulo: "Mercedes Benz Unimog U1500L",
+    imagen: "./assets/img/galeria/20.jpg",
+    estado: "disponible",
+    año: "1990",
+    motor: "OM366A 6.0L Diesel",
+    transmision: "Manual 8 velocidades",
+    kilometraje: "35,800 km",
+    precio: "Consultar precio",
+    descripcion: "Modelo más moderno con excelente mantenimiento y documentación completa."
+  },
+  {
+    id: 6,
+    titulo: "Mercedes Benz Unimog U1200",
+    imagen: "./assets/img/galeria/25.jpg",
+    estado: "disponible",
+    año: "1980",
+    motor: "OM352 5.7L Diesel",
+    transmision: "Manual 6 velocidades",
+    kilometraje: "48,000 km",
+    precio: "Consultar precio",
+    descripcion: "Clásico Unimog en muy buen estado, ideal para coleccionistas y uso recreativo."
+  }
+];
+
+// Función para generar el HTML de una card de camión
+function generarCardCamion(camion) {
+  const estadoClass = `estado-${camion.estado}`;
+  const estadoTexto = camion.estado.charAt(0).toUpperCase() + camion.estado.slice(1);
+  const isDisponible = camion.estado === 'disponible';
+  
+  const mensajeWhatsApp = `Hola, estoy interesado en el ${camion.titulo} del año ${camion.año}. ¿Podrían darme más información sobre este vehículo?`;
+  const urlWhatsApp = `https://wa.me/56945789547?text=${encodeURIComponent(mensajeWhatsApp)}`;
+
+  return `
+    <div class="col-12 col-md-6 col-lg-4 texto-fade" data-estado="${camion.estado}">
+      <div class="camion-card">
+        <div class="camion-image">
+          <img src="${camion.imagen}" alt="${camion.titulo}">
+          <div class="estado-badge ${estadoClass}">${estadoTexto}</div>
+        </div>
+        <div class="camion-content">
+          <h3 class="camion-title">${camion.titulo}</h3>
+          <ul class="camion-specs">
+            <li><strong>Año:</strong> ${camion.año}</li>
+            <li><strong>Motor:</strong> ${camion.motor}</li>
+            <li><strong>Transmisión:</strong> ${camion.transmision}</li>
+            <li><strong>Kilometraje:</strong> ${camion.kilometraje}</li>
+          </ul>
+          <div class="precio-container">
+            <p class="precio-text">${camion.precio}</p>
+          </div>
+          <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">${camion.descripcion}</p>
+          ${isDisponible ? 
+            `<a href="${urlWhatsApp}" class="btn-cotizar" target="_blank">Cotizar Vehículo</a>` :
+            `<button class="btn-cotizar" disabled>No Disponible</button>`
+          }
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Función para renderizar todos los camiones
+function renderizarCamiones(filtro = 'todos') {
+  const container = document.getElementById('camiones-container');
+  if (!container) return;
+
+  let camionesAMostrar = camionesData;
+  
+  if (filtro !== 'todos') {
+    camionesAMostrar = camionesData.filter(camion => camion.estado === filtro);
+  }
+
+  container.innerHTML = camionesAMostrar.map(camion => generarCardCamion(camion)).join('');
+  
+  // Reactivar las animaciones de fade para los nuevos elementos
+  const textosFade = document.querySelectorAll('.texto-fade');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("texto-visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  textosFade.forEach(texto => observer.observe(texto));
+}
+
+// Función para agregar filtros de estado
+function agregarFiltrosCamiones() {
+  const container = document.getElementById('camiones-container');
+  if (!container) return;
+
+  const filtrosHTML = `
+    <div class="filtros-camiones">
+      <button class="filtro-btn active" onclick="filtrarCamiones('todos', this)">Todos</button>
+      <button class="filtro-btn" onclick="filtrarCamiones('disponible', this)">Disponibles</button>
+      <button class="filtro-btn" onclick="filtrarCamiones('reservado', this)">Reservados</button>
+      <button class="filtro-btn" onclick="filtrarCamiones('vendido', this)">Vendidos</button>
+    </div>
+  `;
+  
+  container.insertAdjacentHTML('beforebegin', filtrosHTML);
+}
+
+// Función para filtrar camiones
+function filtrarCamiones(estado, botonActivo) {
+  // Actualizar botones activos
+  document.querySelectorAll('.filtro-btn').forEach(btn => btn.classList.remove('active'));
+  botonActivo.classList.add('active');
+  
+  // Renderizar camiones filtrados
+  renderizarCamiones(estado);
+}
+
+// Funciones para administrar camiones (para uso futuro)
+function agregarCamion(nuevoCamion) {
+  const nuevoId = Math.max(...camionesData.map(c => c.id)) + 1;
+  nuevoCamion.id = nuevoId;
+  camionesData.push(nuevoCamion);
+  renderizarCamiones();
+}
+
+function eliminarCamion(id) {
+  const index = camionesData.findIndex(camion => camion.id === id);
+  if (index > -1) {
+    camionesData.splice(index, 1);
+    renderizarCamiones();
+  }
+}
+
+function cambiarEstadoCamion(id, nuevoEstado) {
+  const camion = camionesData.find(c => c.id === id);
+  if (camion) {
+    camion.estado = nuevoEstado;
+    if (nuevoEstado === 'vendido') {
+      camion.precio = 'VENDIDO';
+    } else if (nuevoEstado === 'reservado') {
+      camion.precio = 'RESERVADO';
+    }
+    renderizarCamiones();
+  }
+}
+
+// Inicializar la sección de camiones cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+  // Esperar un poco para asegurar que el DOM esté completamente cargado
+  setTimeout(() => {
+    agregarFiltrosCamiones();
+    renderizarCamiones();
+    agregarFiltrosRepuestos();
+    renderizarRepuestos();
+  }, 100);
+});
+
+// SISTEMA DINÁMICO DE REPUESTOS DISPONIBLES
+const repuestosData = [
+  {
+    id: 1,
+    titulo: "Motor OM352A Completo",
+    codigo: "MB-OM352A-001",
+    imagen: "./assets/img/galeria/30.jpg",
+    categoria: "motor",
+    disponibilidad: "disponible", // disponible, agotado, bajo-stock
+    compatibilidad: "Unimog U1300L, U1700L",
+    estado: "Reacondicionado",
+    garantia: "6 meses",
+    origen: "Original Mercedes Benz",
+    precio: "Consultar precio",
+    descripcion: "Motor diesel OM352A completamente reacondicionado, ideal para Unimog U1300L y U1700L."
+  },
+  {
+    id: 2,
+    titulo: "Caja de Transmisión 8 Velocidades",
+    codigo: "MB-TRANS-8V-002",
+    imagen: "./assets/img/galeria/35.jpg",
+    categoria: "transmision",
+    disponibilidad: "disponible",
+    compatibilidad: "Unimog U1300, U1500",
+    estado: "Nuevo",
+    garantia: "12 meses",
+    origen: "Original Mercedes Benz",
+    precio: "Consultar precio",
+    descripcion: "Transmisión manual de 8 velocidades, nueva, con documentación completa."
+  },
+  {
+    id: 3,
+    titulo: "Sistema de Frenos Completo",
+    codigo: "MB-BRAKE-SYS-003",
+    imagen: "./assets/img/galeria/40.jpg",
+    categoria: "frenos",
+    disponibilidad: "bajo-stock",
+    compatibilidad: "Unimog U1200, U1300",
+    estado: "Reacondicionado",
+    garantia: "3 meses",
+    origen: "Original Mercedes Benz",
+    precio: "Consultar precio",
+    descripcion: "Sistema de frenos completo reacondicionado, incluye discos, pastillas y cilindros."
+  },
+  {
+    id: 4,
+    titulo: "Bomba Hidráulica Principal",
+    codigo: "MB-HYD-PUMP-004",
+    imagen: "./assets/img/galeria/45.jpg",
+    categoria: "hidraulico",
+    disponibilidad: "disponible",
+    compatibilidad: "Unimog U1700L, U1500L",
+    estado: "Reacondicionado",
+    garantia: "6 meses",
+    origen: "Original Mercedes Benz",
+    precio: "Consultar precio",
+    descripcion: "Bomba hidráulica principal reacondicionada, probada y certificada."
+  },
+  {
+    id: 5,
+    titulo: "Faros Delanteros LED",
+    codigo: "MB-LIGHT-LED-005",
+    imagen: "./assets/img/galeria/50.jpg",
+    categoria: "electrico",
+    disponibilidad: "disponible",
+    compatibilidad: "Todos los modelos Unimog",
+    estado: "Nuevo",
+    garantia: "24 meses",
+    origen: "Aftermarket Premium",
+    precio: "Consultar precio",
+    descripcion: "Faros LED de alta eficiencia, mayor iluminación y menor consumo energético."
+  },
+  {
+    id: 6,
+    titulo: "Filtro de Aire OM352",
+    codigo: "MB-FILTER-AIR-006",
+    imagen: "./assets/img/galeria/12.jpg",
+    categoria: "filtros",
+    disponibilidad: "disponible",
+    compatibilidad: "Motores OM352, OM352A",
+    estado: "Nuevo",
+    garantia: "Sin garantía (consumible)",
+    origen: "Original Mercedes Benz",
+    precio: "Consultar precio",
+    descripcion: "Filtro de aire original para motores OM352 y OM352A, alta calidad."
+  },
+  {
+    id: 7,
+    titulo: "Radiador de Refrigeración",
+    codigo: "MB-RAD-COOL-007",
+    imagen: "./assets/img/galeria/18.jpg",
+    categoria: "refrigeracion",
+    disponibilidad: "agotado",
+    compatibilidad: "Unimog U1300L",
+    estado: "Reacondicionado",
+    garantia: "6 meses",
+    origen: "Original Mercedes Benz",
+    precio: "AGOTADO",
+    descripcion: "Radiador de refrigeración reacondicionado, actualmente sin stock."
+  },
+  {
+    id: 8,
+    titulo: "Asientos Militares Originales",
+    codigo: "MB-SEAT-MIL-008",
+    imagen: "./assets/img/galeria/22.jpg",
+    categoria: "carroceria",
+    disponibilidad: "bajo-stock",
+    compatibilidad: "Todos los modelos Unimog",
+    estado: "Restaurado",
+    garantia: "3 meses",
+    origen: "Original Mercedes Benz",
+    precio: "Consultar precio",
+    descripcion: "Asientos militares originales completamente restaurados, últimas unidades."
+  },
+  {
+    id: 9,
+    titulo: "Kit de Embrague Completo",
+    codigo: "MB-CLUTCH-KIT-009",
+    imagen: "./assets/img/galeria/28.jpg",
+    categoria: "transmision",
+    disponibilidad: "disponible",
+    compatibilidad: "Unimog U1200, U1300",
+    estado: "Nuevo",
+    garantia: "12 meses",
+    origen: "Original Mercedes Benz",
+    precio: "Consultar precio",
+    descripcion: "Kit de embrague completo nuevo, incluye disco, plato y cojinete."
+  }
+];
+
+// Función para generar el HTML de una card de repuesto
+function generarCardRepuesto(repuesto) {
+  const disponibilidadClass = repuesto.disponibilidad;
+  const disponibilidadTexto = repuesto.disponibilidad === 'bajo-stock' ? 'Bajo Stock' : 
+                              repuesto.disponibilidad.charAt(0).toUpperCase() + repuesto.disponibilidad.slice(1);
+  const isDisponible = repuesto.disponibilidad === 'disponible' || repuesto.disponibilidad === 'bajo-stock';
+  
+  const mensajeWhatsApp = `Hola, estoy interesado en el repuesto: ${repuesto.titulo} (Código: ${repuesto.codigo}). ¿Podrían darme más información sobre disponibilidad y precio?`;
+  const urlWhatsApp = `https://wa.me/56945789547?text=${encodeURIComponent(mensajeWhatsApp)}`;
+
+  return `
+    <div class="col-12 col-md-6 col-lg-4 texto-fade" data-categoria="${repuesto.categoria}">
+      <div class="repuesto-card">
+        <div class="repuesto-image">
+          <img src="${repuesto.imagen}" alt="${repuesto.titulo}">
+          <div class="categoria-badge">${repuesto.categoria.toUpperCase()}</div>
+          <div class="disponibilidad-badge ${disponibilidadClass}">${disponibilidadTexto}</div>
+        </div>
+        <div class="repuesto-content">
+          <h3 class="repuesto-title">${repuesto.titulo}</h3>
+          <div class="repuesto-codigo">Código: ${repuesto.codigo}</div>
+          <ul class="repuesto-specs">
+            <li><strong>Compatibilidad:</strong> ${repuesto.compatibilidad}</li>
+            <li><strong>Estado:</strong> ${repuesto.estado}</li>
+            <li><strong>Garantía:</strong> ${repuesto.garantia}</li>
+            <li><strong>Origen:</strong> ${repuesto.origen}</li>
+          </ul>
+          <div class="precio-repuesto">
+            <p class="precio-text">${repuesto.precio}</p>
+          </div>
+          <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">${repuesto.descripcion}</p>
+          ${isDisponible ? 
+            `<a href="${urlWhatsApp}" class="btn-cotizar-repuesto" target="_blank">Cotizar Repuesto</a>` :
+            `<button class="btn-cotizar-repuesto" disabled>No Disponible</button>`
+          }
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Función para renderizar todos los repuestos
+function renderizarRepuestos(filtro = 'todos') {
+  const container = document.getElementById('repuestos-container');
+  if (!container) return;
+
+  let repuestosAMostrar = repuestosData;
+  
+  if (filtro !== 'todos') {
+    repuestosAMostrar = repuestosData.filter(repuesto => repuesto.categoria === filtro);
+  }
+
+  container.innerHTML = repuestosAMostrar.map(repuesto => generarCardRepuesto(repuesto)).join('');
+  
+  // Reactivar las animaciones de fade para los nuevos elementos
+  const textosFade = document.querySelectorAll('.texto-fade');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("texto-visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  textosFade.forEach(texto => observer.observe(texto));
+}
+
+// Función para agregar filtros de categoría
+function agregarFiltrosRepuestos() {
+  const container = document.getElementById('repuestos-container');
+  if (!container) return;
+
+  const categorias = [...new Set(repuestosData.map(repuesto => repuesto.categoria))];
+  
+  const filtrosHTML = `
+    <div class="filtros-repuestos">
+      <button class="filtro-categoria active" onclick="filtrarRepuestos('todos', this)">Todos</button>
+      ${categorias.map(categoria => 
+        `<button class="filtro-categoria" onclick="filtrarRepuestos('${categoria}', this)">${categoria.charAt(0).toUpperCase() + categoria.slice(1)}</button>`
+      ).join('')}
+    </div>
+  `;
+  
+  container.insertAdjacentHTML('beforebegin', filtrosHTML);
+}
+
+// Función para filtrar repuestos
+function filtrarRepuestos(categoria, botonActivo) {
+  // Actualizar botones activos
+  document.querySelectorAll('.filtro-categoria').forEach(btn => btn.classList.remove('active'));
+  botonActivo.classList.add('active');
+  
+  // Renderizar repuestos filtrados
+  renderizarRepuestos(categoria);
+}
+
+// Funciones para administrar repuestos (para uso futuro)
+function agregarRepuesto(nuevoRepuesto) {
+  const nuevoId = Math.max(...repuestosData.map(r => r.id)) + 1;
+  nuevoRepuesto.id = nuevoId;
+  repuestosData.push(nuevoRepuesto);
+  renderizarRepuestos();
+}
+
+function eliminarRepuesto(id) {
+  const index = repuestosData.findIndex(repuesto => repuesto.id === id);
+  if (index > -1) {
+    repuestosData.splice(index, 1);
+    renderizarRepuestos();
+  }
+}
+
+function cambiarDisponibilidadRepuesto(id, nuevaDisponibilidad) {
+  const repuesto = repuestosData.find(r => r.id === id);
+  if (repuesto) {
+    repuesto.disponibilidad = nuevaDisponibilidad;
+    if (nuevaDisponibilidad === 'agotado') {
+      repuesto.precio = 'AGOTADO';
+    }
+    renderizarRepuestos();
+  }
+}
+
 // Función para manejar el estado activo del navbar
 function setActiveNav() {
   const sections = document.querySelectorAll('section');

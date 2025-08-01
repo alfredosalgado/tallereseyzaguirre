@@ -35,6 +35,8 @@
           <div class="navbar-nav w-100 d-flex justify-content-around text-barlow">
             <a class="nav-link text-maule" href="#inicio">Página de Inicio</a>
             <a class="nav-link text-maule" href="#serv">Servicios</a>
+            <a class="nav-link text-maule" href="#camiones">Camiones en Venta</a>
+            <a class="nav-link text-maule" href="#repuestos">Repuestos</a>
             <a class="nav-link text-maule" href="#nosotros">Sobre Nosotros</a>
             <a class="nav-link text-maule" href="#mision">Misión & Visión</a>
             <a class="nav-link text-maule" href="#pilares">Valores</a>
@@ -51,6 +53,21 @@
 
 
     <section id="inicio" class="hero-section">
+      <!-- Partículas flotantes de fondo -->
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      
+      <!-- Ondas animadas de fondo -->
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      
+      <!-- Círculos pulsantes adicionales -->
+      <div class="pulse-circle"></div>
+      <div class="pulse-circle"></div>
+      <div class="pulse-circle"></div>
+      
       <div class="content-container">
         <div class="text-content">
           <h1 class="text-home">Talleres Eyzaguirre – Mecánica Especializada en Vehículos Militares</h1>
@@ -59,6 +76,15 @@
         <div class="image-container">
           <img src="./assets/img/portada/2.jpg" alt="Equipo de seguridad">
         </div>
+      </div>
+      
+      <!-- Flecha de scroll down animada -->
+      <div class="scroll-down-arrow" onclick="scrollToNextSection()">
+        <div class="arrow-container">
+          <div class="arrow-line"></div>
+          <div class="arrow-head"></div>
+        </div>
+        <span class="scroll-text">Desliza hacia abajo</span>
       </div>
     </section>
 
@@ -214,20 +240,30 @@
     </section>
 
 
+    <!-- Nueva sección de Camiones en Venta -->
+    <section id="camiones" class="camiones-section">
+      <div class="container">
+        <h2 class="text-center display-2 pt-4 pb-5 mb-0 text-barlow titulo-animado text-dark">
+          Camiones Disponibles en Venta
+        </h2>
+        <div class="row justify-content-center" id="camiones-container">
+          <!-- Los camiones se generarán dinámicamente aquí -->
+        </div>
+      </div>
+    </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- Nueva sección de Repuestos Disponibles -->
+    <section id="repuestos" class="repuestos-section">
+      <div class="container">
+        <h2 class="text-center display-2 pt-4 pb-5 mb-0 text-barlow titulo-animado text-light">
+          Repuestos Disponibles
+        </h2>
+        <div class="row justify-content-center" id="repuestos-container">
+          <!-- Los repuestos se generarán dinámicamente aquí -->
+        </div>
+      </div>
+    </section>
 
 
     <section id="nosotros" class="nosotros-section">
@@ -571,6 +607,8 @@
       <div class="col-12 col-md-3 d-flex justify-content-center flex-column gap-2 text-center">
         <a class="hp" href="#inicio">Página de Inicio</a>
         <a class="hp" href="#serv">Servicios</a>
+        <a class="hp" href="#camiones">Camiones en Venta</a>
+        <a class="hp" href="#repuestos">Repuestos</a>
         <a class="hp" href="#nosotros">Sobre Nosotros</a>
         <a class="hp" href="#mision">Misión & Visión</a>
         <a class="hp" href="#pilares">Valores</a>
