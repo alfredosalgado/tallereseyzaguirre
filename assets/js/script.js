@@ -529,133 +529,153 @@ document.addEventListener('DOMContentLoaded', function() {
 const repuestosData = [
   {
     id: 1,
-    titulo: "Motor OM352A Completo",
-    codigo: "MB-OM352A-001",
-    imagen: "./assets/img/galeria/30.jpg",
-    categoria: "motor",
+    titulo: "Bomba de Embrague",
+    codigo: "BE-001",
+    imagenes: ["./assets/img/repuestos/Bomba de embrague.jpeg"],
+    categoria: "embrague",
     disponibilidad: "disponible", // disponible, agotado, bajo-stock
-    compatibilidad: "Unimog U1300L, U1700L",
-    estado: "Reacondicionado",
-    garantia: "6 meses",
-    origen: "Original Mercedes Benz",
     precio: "Consultar precio",
-    descripcion: "Motor diesel OM352A completamente reacondicionado, ideal para Unimog U1300L y U1700L."
+    descripcion: "Bomba de embrague para vehículos militares, alta resistencia y durabilidad."
   },
   {
     id: 2,
-    titulo: "Caja de Transmisión 8 Velocidades",
-    codigo: "MB-TRANS-8V-002",
-    imagen: "./assets/img/galeria/35.jpg",
-    categoria: "transmision",
+    titulo: "Bomba de Freno",
+    codigo: "BF-002",
+    imagenes: [
+      "./assets/img/repuestos/Bomba de freno.jpeg",
+      "./assets/img/repuestos/Bomba de freno 2.jpeg",
+      "./assets/img/repuestos/Bomba de freno 3.jpeg"
+    ],
+    categoria: "frenos",
     disponibilidad: "disponible",
-    compatibilidad: "Unimog U1300, U1500",
-    estado: "Nuevo",
-    garantia: "12 meses",
-    origen: "Original Mercedes Benz",
     precio: "Consultar precio",
-    descripcion: "Transmisión manual de 8 velocidades, nueva, con documentación completa."
+    descripcion: "Sistema de bomba de freno completo, incluye múltiples configuraciones disponibles."
   },
   {
     id: 3,
-    titulo: "Sistema de Frenos Completo",
-    codigo: "MB-BRAKE-SYS-003",
-    imagen: "./assets/img/galeria/40.jpg",
-    categoria: "frenos",
-    disponibilidad: "bajo-stock",
-    compatibilidad: "Unimog U1200, U1300",
-    estado: "Reacondicionado",
-    garantia: "3 meses",
-    origen: "Original Mercedes Benz",
+    titulo: "Conjunto de Embrague, Bomba y Cilindro",
+    codigo: "CEC-003",
+    imagenes: ["./assets/img/repuestos/Conjunto de embrague, bomba y cilindro.jpeg"],
+    categoria: "embrague",
+    disponibilidad: "disponible",
     precio: "Consultar precio",
-    descripcion: "Sistema de frenos completo reacondicionado, incluye discos, pastillas y cilindros."
+    descripcion: "Kit completo de embrague que incluye bomba y cilindro, solución integral para el sistema."
   },
   {
     id: 4,
-    titulo: "Bomba Hidráulica Principal",
-    codigo: "MB-HYD-PUMP-004",
-    imagen: "./assets/img/galeria/45.jpg",
-    categoria: "hidraulico",
-    disponibilidad: "disponible",
-    compatibilidad: "Unimog U1700L, U1500L",
-    estado: "Reacondicionado",
-    garantia: "6 meses",
-    origen: "Original Mercedes Benz",
+    titulo: "Kit de Frenos, Cilindros y Bombas",
+    codigo: "KFC-004",
+    imagenes: [
+      "./assets/img/repuestos/Kit de frenos, cilindros y bombas.jpeg",
+      "./assets/img/repuestos/Kit de frenos, cilindros y bombas 2.jpeg"
+    ],
+    categoria: "frenos",
+    disponibilidad: "bajo-stock",
     precio: "Consultar precio",
-    descripcion: "Bomba hidráulica principal reacondicionada, probada y certificada."
+    descripcion: "Kit completo del sistema de frenos, incluye cilindros y bombas para reparación integral."
   },
   {
     id: 5,
-    titulo: "Faros Delanteros LED",
-    codigo: "MB-LIGHT-LED-005",
-    imagen: "./assets/img/galeria/50.jpg",
-    categoria: "electrico",
+    titulo: "Kit de Soporte de Cabina",
+    codigo: "KSC-005",
+    imagenes: [
+      "./assets/img/repuestos/Kit de soporte de cabina.jpeg",
+      "./assets/img/repuestos/Kit de soporte de cabina 2.jpeg",
+      "./assets/img/repuestos/Kit de soporte de cabina 3.jpeg"
+    ],
+    categoria: "carroceria",
     disponibilidad: "disponible",
-    compatibilidad: "Todos los modelos Unimog",
-    estado: "Nuevo",
-    garantia: "24 meses",
-    origen: "Aftermarket Premium",
     precio: "Consultar precio",
-    descripcion: "Faros LED de alta eficiencia, mayor iluminación y menor consumo energético."
+    descripcion: "Sistema completo de soporte para cabina, incluye todos los componentes necesarios para la instalación."
   },
   {
     id: 6,
-    titulo: "Filtro de Aire OM352",
-    codigo: "MB-FILTER-AIR-006",
-    imagen: "./assets/img/galeria/12.jpg",
-    categoria: "filtros",
+    titulo: "Piñones Reductores de Masa",
+    codigo: "PRM-006",
+    imagenes: [
+      "./assets/img/repuestos/Piñones reductores de masa.jpeg",
+      "./assets/img/repuestos/Piñones reductores de masa 2.jpeg",
+      "./assets/img/repuestos/Piñones reductores de masa 3.jpeg"
+    ],
+    categoria: "transmision",
     disponibilidad: "disponible",
-    compatibilidad: "Motores OM352, OM352A",
-    estado: "Nuevo",
-    garantia: "Sin garantía (consumible)",
-    origen: "Original Mercedes Benz",
     precio: "Consultar precio",
-    descripcion: "Filtro de aire original para motores OM352 y OM352A, alta calidad."
+    descripcion: "Conjunto de piñones reductores de masa, componentes esenciales para la transmisión."
   },
   {
     id: 7,
-    titulo: "Radiador de Refrigeración",
-    codigo: "MB-RAD-COOL-007",
-    imagen: "./assets/img/galeria/18.jpg",
-    categoria: "refrigeracion",
-    disponibilidad: "agotado",
-    compatibilidad: "Unimog U1300L",
-    estado: "Reacondicionado",
-    garantia: "6 meses",
-    origen: "Original Mercedes Benz",
-    precio: "AGOTADO",
-    descripcion: "Radiador de refrigeración reacondicionado, actualmente sin stock."
+    titulo: "Rodamiento de Masa Exterior",
+    codigo: "RME-007",
+    imagenes: ["./assets/img/repuestos/Rodamiento de masa exterior.jpeg"],
+    categoria: "transmision",
+    disponibilidad: "disponible",
+    precio: "Consultar precio",
+    descripcion: "Rodamiento de masa exterior de alta calidad para sistemas de transmisión."
   },
   {
     id: 8,
-    titulo: "Asientos Militares Originales",
-    codigo: "MB-SEAT-MIL-008",
-    imagen: "./assets/img/galeria/22.jpg",
-    categoria: "carroceria",
+    titulo: "Rodamiento de Masa Interior Superior",
+    codigo: "RMIS-008",
+    imagenes: ["./assets/img/repuestos/Rodamiento de masa interior superior.jpeg"],
+    categoria: "transmision",
     disponibilidad: "bajo-stock",
-    compatibilidad: "Todos los modelos Unimog",
-    estado: "Restaurado",
-    garantia: "3 meses",
-    origen: "Original Mercedes Benz",
     precio: "Consultar precio",
-    descripcion: "Asientos militares originales completamente restaurados, últimas unidades."
+    descripcion: "Rodamiento de masa interior superior, componente crítico para el funcionamiento óptimo."
   },
   {
     id: 9,
-    titulo: "Kit de Embrague Completo",
-    codigo: "MB-CLUTCH-KIT-009",
-    imagen: "./assets/img/galeria/28.jpg",
-    categoria: "transmision",
+    titulo: "Válvula de Bloqueo de Aire",
+    codigo: "VBA-009",
+    imagenes: [
+      "./assets/img/repuestos/Válvula de bloqueo de aire.jpeg",
+      "./assets/img/repuestos/Válvula de bloqueo de aire 2.jpeg"
+    ],
+    categoria: "neumatico",
     disponibilidad: "disponible",
-    compatibilidad: "Unimog U1200, U1300",
-    estado: "Nuevo",
-    garantia: "12 meses",
-    origen: "Original Mercedes Benz",
     precio: "Consultar precio",
-    descripcion: "Kit de embrague completo nuevo, incluye disco, plato y cojinete."
+    descripcion: "Válvula de bloqueo de aire para sistemas neumáticos, disponible en diferentes configuraciones."
   }
 ];
 
 // Función para generar el HTML de una card de repuesto
+// Función para generar carrusel de imágenes
+const generarCarruselImagenes = (imagenes, repuestoId) => {
+  if (imagenes.length === 1) {
+    return `<img src="${imagenes[0]}" alt="Imagen del repuesto">`;
+  }
+
+  const carruselId = `carrusel-repuesto-${repuestoId}`;
+  
+  return `
+    <div id="${carruselId}" class="carousel slide repuesto-carousel" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        ${imagenes.map((imagen, index) => `
+          <div class="carousel-item ${index === 0 ? 'active' : ''}">
+            <img src="${imagen}" class="d-block w-100" alt="Imagen ${index + 1} del repuesto">
+          </div>
+        `).join('')}
+      </div>
+      ${imagenes.length > 1 ? `
+        <button class="carousel-control-prev" type="button" data-bs-target="#${carruselId}" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#${carruselId}" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+        <div class="carousel-indicators">
+          ${imagenes.map((_, index) => `
+            <button type="button" data-bs-target="#${carruselId}" data-bs-slide-to="${index}" 
+                    class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" 
+                    aria-label="Slide ${index + 1}"></button>
+          `).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+};
+
 function generarCardRepuesto(repuesto) {
   const disponibilidadClass = repuesto.disponibilidad;
   const disponibilidadTexto = repuesto.disponibilidad === 'bajo-stock' ? 'Bajo Stock' : 
@@ -669,7 +689,7 @@ function generarCardRepuesto(repuesto) {
     <div class="col-12 col-md-6 col-lg-4 texto-fade" data-categoria="${repuesto.categoria}">
       <div class="repuesto-card">
         <div class="repuesto-image">
-          <img src="${repuesto.imagen}" alt="${repuesto.titulo}">
+          ${generarCarruselImagenes(repuesto.imagenes, repuesto.id)}
           <div class="categoria-badge">${repuesto.categoria.toUpperCase()}</div>
           <div class="disponibilidad-badge ${disponibilidadClass}">${disponibilidadTexto}</div>
         </div>
@@ -677,15 +697,7 @@ function generarCardRepuesto(repuesto) {
           <h3 class="repuesto-title">${repuesto.titulo}</h3>
           <div class="repuesto-codigo">Código: ${repuesto.codigo}</div>
           <ul class="repuesto-specs">
-            <li><strong>Compatibilidad:</strong> ${repuesto.compatibilidad}</li>
-            <li><strong>Estado:</strong> ${repuesto.estado}</li>
-            <li><strong>Garantía:</strong> ${repuesto.garantia}</li>
-            <li><strong>Origen:</strong> ${repuesto.origen}</li>
           </ul>
-          <div class="precio-repuesto">
-            <p class="precio-text">${repuesto.precio}</p>
-          </div>
-          <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">${repuesto.descripcion}</p>
           ${isDisponible ? 
             `<a href="${urlWhatsApp}" class="btn-cotizar-repuesto" target="_blank">Cotizar Repuesto</a>` :
             `<button class="btn-cotizar-repuesto" disabled>No Disponible</button>`
